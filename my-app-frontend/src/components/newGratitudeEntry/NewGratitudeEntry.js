@@ -1,6 +1,7 @@
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useState, useEffect } from "react";
+import GratitudeArea from '../gratitudeArea/GratitudeArea';
 
 
 function NewGratitudeEntry() {
@@ -9,7 +10,8 @@ function NewGratitudeEntry() {
         answer: "",
         question_id: ""
     })
-    const [catId, setCatID] = useState([])
+    const [catId, setCatID] = useState(1)
+    const [counter, setCounter] = useState(0)
 
     useEffect(() => {
         fetch('http://localhost:9292/categories')
@@ -30,10 +32,10 @@ function NewGratitudeEntry() {
         console.log(e.target.value)
     }
 
-    function handleChangeCat(e){
+    function handleChangeCat(e){ /*Create a separate handle change for a separate useState */
         for (let i of categories){
             if (i.question === e.target.value){
-                setCatID(i.id)
+                setCatID(i.question)
             }
         }    
     }
@@ -61,12 +63,13 @@ function NewGratitudeEntry() {
                 question_id: ""
             })
         })
+        .then(() => setCounter(counter + 1))
         .then(() => window.alert('Blessing added successfully!'))
     }
 
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit} >
         <Form.Group className="mb-3">
           <Form.Label htmlFor="selectCategory">Select Category</Form.Label>
           <Form.Select id="questionTextInput"
@@ -84,6 +87,7 @@ function NewGratitudeEntry() {
           value={blessings.answer} />
         </Form.Group>
         <Button type="submit">Submit</Button>
+        <GratitudeArea counter={counter} setCounter={setCounter}/>
     </Form>
   );
 }
