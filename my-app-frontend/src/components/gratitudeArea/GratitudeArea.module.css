@@ -1,0 +1,12 @@
+.title_box{
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.container{
+    padding: 40px;
+    background-color: rgb(253, 253, 253, .45);
+    border-radius: 20px;
+    border-color: gray;
+}
