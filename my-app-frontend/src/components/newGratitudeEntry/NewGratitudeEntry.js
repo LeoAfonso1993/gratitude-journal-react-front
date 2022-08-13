@@ -2,6 +2,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useState, useEffect } from "react";
 import GratitudeArea from '../gratitudeArea/GratitudeArea';
+import newEntry from './NewGratitudeEntry.module.css'
 
 
 function NewGratitudeEntry() {
@@ -10,7 +11,7 @@ function NewGratitudeEntry() {
         answer: "",
         question_id: ""
     })
-    const [catId, setCatID] = useState(1)
+    const [catId, setCatID] = useState("I am grateful for...")
     const [counter, setCounter] = useState(0)
 
     useEffect(() => {
@@ -21,7 +22,7 @@ function NewGratitudeEntry() {
 
     const allTheOptions = categories.map((categ) => {
         return (
-            <option>{categ.question}</option>
+            <option className={newEntry.options}>{categ.question}</option>
         )
     })
 
@@ -29,7 +30,6 @@ function NewGratitudeEntry() {
         setBlessings({
             [e.target.name]: e.target.value,
         })
-        console.log(e.target.value)
     }
 
     function handleChangeCat(e){ /*Create a separate handle change for a separate useState */
@@ -69,26 +69,35 @@ function NewGratitudeEntry() {
 
 
   return (
-    <Form onSubmit={handleSubmit} >
-        <Form.Group className="mb-3">
-          <Form.Label htmlFor="selectCategory">Select Category</Form.Label>
-          <Form.Select id="questionTextInput"
-          name="question_id"
-          onChange={handleChangeCat}
-          value={categories.question}>
-            {allTheOptions}
-          </Form.Select>
-        </Form.Group>
-        <Form.Group className="mb-3">
-          <Form.Control id="answerTextInput" 
-          placeholder="Answer"
-          name="answer"
-          onChange={handleChange}
-          value={blessings.answer} />
-        </Form.Group>
-        <Button type="submit">Submit</Button>
-        <GratitudeArea counter={counter} setCounter={setCounter}/>
-    </Form>
+    <>
+    <div>
+        <div className={newEntry.txt}>
+            <h4><i>"Acknowledging the good that you already have in your life is the foundation for all abundance."</i></h4>
+            <h6>-ECKHART TOLLE</h6>
+        </div>
+        <Form onSubmit={handleSubmit} className={newEntry.form}>
+            <Form.Group className="mb-3">
+            <Form.Label htmlFor="selectCategory">Select Category</Form.Label>
+            <Form.Select id="questionTextInput"
+            name="question_id"
+            onChange={handleChangeCat}
+            value={categories.question}>
+                {allTheOptions}
+            </Form.Select>
+            </Form.Group>
+            <Form.Group className="mb-3">
+            <Form.Control id="answerTextInput" 
+            placeholder="Answer"
+            name="answer"
+            onChange={handleChange}
+            value={blessings.answer} />
+            </Form.Group>
+            <Button type="submit" style={{ color: 'black' }} className={newEntry.btn}>Submit</Button>
+        </Form>
+        <GratitudeArea counter={counter} setCounter={setCounter} />
+    </div>
+    </>
+    
   );
 }
 

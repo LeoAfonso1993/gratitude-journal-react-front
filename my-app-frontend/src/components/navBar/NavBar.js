@@ -1,13 +1,14 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.css';
 import { Navbar, Container} from 'react-bootstrap';
+import nav from './NavBar.module.css'
 
 function NavBar() {
     return (
         <>
-        <Navbar bg="light" variant="light">
+        <Navbar bg="light" variant="light" className={nav.bar}>
         <Container>
-          <Navbar.Brand href="#home">BGrateful</Navbar.Brand>
+          <Navbar.Brand href="#home"><strong>B</strong>Grateful</Navbar.Brand>
         </Container>
       </Navbar>
         </>

@@ -1,0 +1,21 @@
+.btn{
+    background-color: rgba(166, 231, 248, 0.422);
+    border: black;
+}
+
+.form{
+    margin: auto;
+    width: 80vw;
+    padding: 40px;
+
+}
+
+.txt{
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: -30px;
+}
+
+.options {
+    margin-left: 200px;
+}
