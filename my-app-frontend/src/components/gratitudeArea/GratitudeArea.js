@@ -18,13 +18,17 @@ function GratitudeArea({counter, setCounter}) {
       },[counter]) 
 
 
+
+
     const allBlessings = blessingCards.map((blessing) => {
+        const question = blessing.category_id === 5 ? "I am grateful for..." : "I am proud of myselfe because..." 
+
         return(
             <Col>
             <BlessingCards 
             key={blessing.id}
             id={blessing.id}
-            question={blessing.question_id}
+            question={question}
             answer={blessing.answer}
             blessingCards={blessingCards}
             setBlessingCards={setBlessingCards}

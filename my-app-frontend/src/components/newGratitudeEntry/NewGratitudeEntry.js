@@ -9,9 +9,9 @@ function NewGratitudeEntry() {
     const [categories, setCategories] = useState([])
     const [blessings, setBlessings] = useState({
         answer: "",
-        question_id: ""
+        category_id: ""
     })
-    const [catId, setCatID] = useState("I am grateful for...")
+    const [catId, setCatID] = useState(0)
     const [counter, setCounter] = useState(0)
 
     useEffect(() => {
@@ -35,7 +35,7 @@ function NewGratitudeEntry() {
     function handleChangeCat(e){ /*Create a separate handle change for a separate useState */
         for (let i of categories){
             if (i.question === e.target.value){
-                setCatID(i.question)
+                setCatID(i.id)
             }
         }    
     }
@@ -50,7 +50,7 @@ function NewGratitudeEntry() {
             },
             body: JSON.stringify({
                 answer: blessings.answer,
-                question_id: catId
+                category_id: catId
             })
         }
 
@@ -60,7 +60,7 @@ function NewGratitudeEntry() {
         .then(() => {
             setBlessings({
                 answer: "",
-                question_id: ""
+                category_id: 0
             })
         })
         .then(() => setCounter(counter + 1))
